@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case study: document extraction with Azure Content Understanding | Adam Cain</title>
+  <meta name="description"
+    content="How an unattended Azure extraction pipeline cleared a 7,500-document backlog for a public sector regulator, at about £200 a month.">
+  <meta name="theme-color" content="#0c1218">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Primary">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true">AC</span>
+        <span class="brand-name">Adam Cain</span>
+      </a>
+      <a class="back-link" href="../#work">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 8H3M7 4L3 8l4 4" />
+        </svg>
+        All case studies
+      </a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="container cs-hero">
+      <div class="tags">
+        <span class="tag">Public sector regulator</span>
+        <span class="tag">Azure AI architecture</span>
+        <span class="tag">6-month delivery</span>
+      </div>
+      <h1 class="display">Clearing a 7,500-document backlog with an unattended extraction pipeline</h1>
+      <p class="lede">A regulator couldn't keep up with incoming submissions, let alone the backlog. I designed and
+        built a pipeline on Azure that reads each document, extracts the data and writes it to SQL, with people only
+        handling the exceptions.</p>
+    </section>
+
+    <section class="band" aria-label="Key results">
+      <div class="container results">
+        <div class="result"><strong class="accent">~90%</strong><span>ingestion to SQL with no manual handling</span>
+        </div>
+        <div class="result"><strong>7,500</strong><span>backlogged documents cleared in six months</span></div>
+        <div class="result"><strong>~£200</strong><span>a month for every Azure resource combined</span></div>
+        <div class="result"><strong>100/day</strong><span>capacity, against an intake of 10–20</span></div>
+      </div>
+    </section>
+
+    <section class="container cs-section" aria-labelledby="arch">
+      <div class="cs-section-head">
+        <p class="eyebrow">Architecture</p>
+        <h2 id="arch" class="display">Five managed services, no servers to look after.</h2>
+      </div>
+      <figure class="diagram">
+        <ol class="pipeline" aria-label="Pipeline stages, in order">
+          <li class="stage">
+            <div class="stage-box"><span class="stage-n">01</span><span class="stage-name">Logic App</span><span
+                class="stage-role">Ingests each submitted document</span></div>
+            <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h22M21 3l5 5-5 5" />
+            </svg>
+          </li>
+          <li class="stage">
+            <div class="stage-box"><span class="stage-n">02</span><span class="stage-name">Event Hub</span><span
+                class="stage-role">Event-driven orchestration</span></div>
+            <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h22M21 3l5 5-5 5" />
+            </svg>
+          </li>
+          <li class="stage is-accent">
+            <div class="stage-box"><span class="stage-n">03</span><span class="stage-name">Content
+                Understanding</span><span class="stage-role">Extracts structured fields</span></div>
+            <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h22M21 3l5 5-5 5" />
+            </svg>
+          </li>
+          <li class="stage">
+            <div class="stage-box"><span class="stage-n">04</span><span class="stage-name">Azure Functions</span><span
+                class="stage-role">Converts output to SQL</span></div>
+            <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8h22M21 3l5 5-5 5" />
+            </svg>
+          </li>
+          <li class="stage">
+            <div class="stage-box"><span class="stage-n">05</span><span class="stage-name">Azure SQL
+                Database</span><span class="stage-role">System of record</span></div>
+          </li>
+        </ol>
+        <figcaption class="legend">
+          <span><span class="dot" aria-hidden="true"></span>~90% straight through</span>
+          <span><span class="dot is-warn" aria-hidden="true"></span>~10% routed as edge cases to a person: poor scans,
+            wrong document submitted, and so on.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="container narrative" aria-label="Case study detail">
+      <div class="narrative-row">
+        <h2>The problem</h2>
+        <div class="body">
+          <p>A backlog of around 7,500 documents, and new ones arriving faster than the team could key them in. Every
+            document needed the same structured fields captured into a database before work on it could start.</p>
+        </div>
+      </div>
+      <div class="narrative-row">
+        <h2>What I did</h2>
+        <div class="body">
+          <p>Designed an event-driven pipeline: A Logic App takes each document in, an Event Hub orchestrates, Azure
+            Content Understanding with a GPT model extracts the fields, and Azure Functions turn the output into SQL
+            for Azure SQL Database.</p>
+          <p>We started with small batches, checked the output by hand, and increased volume only as confidence in
+            extraction quality grew. Anything the pipeline couldn't handle cleanly went to a person rather than into
+            the database.</p>
+        </div>
+      </div>
+      <div class="narrative-row">
+        <h2>Outcome</h2>
+        <div class="body">
+          <p>The backlog was cleared over six months and the process now runs largely unattended. Roughly nine in ten
+            documents flow from ingestion to SQL untouched; the rest are genuine edge cases. Running cost is about £200
+            a month for everything.</p>
+        </div>
+      </div>
+      <div class="narrative-row">
+        <h2>What I'd do next</h2>
+        <div class="body">
+          <p>Capacity sits far above real intake, so a tuning review to right-size the pipeline, and its cost, was the
+            planned next step.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container cs-cta" aria-label="Contact">
+      <div class="panel">
+        <p>Sitting on a document backlog of your own?</p>
+        <a class="btn btn-primary" href="mailto:adam@quadrivium.cloud">Talk it through</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Adam Cain · Quadrivium Cloud</span>
+    </div>
+  </footer>
+</body>
+
+</html>
