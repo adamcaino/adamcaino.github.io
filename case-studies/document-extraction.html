@@ -28,8 +28,8 @@
         <span class="brand-name">Adam Cain</span>
       </a>
       <a class="back-link" href="../#work">
-        <svg class="icon" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
           <path d="M13 8H3M7 4L3 8l4 4" />
         </svg>
         All case studies
@@ -68,7 +68,7 @@
       <figure class="diagram">
         <ol class="pipeline" aria-label="Pipeline stages, in order">
           <li class="stage">
-            <div class="stage-box"><span class="stage-n">01</span><span class="stage-name">Event Hub</span><span
+            <div class="stage-box"><span class="stage-n">01</span><span class="stage-name">Logic App</span><span
                 class="stage-role">Ingests each submitted document</span></div>
             <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -76,23 +76,23 @@
             </svg>
           </li>
           <li class="stage">
-            <div class="stage-box"><span class="stage-n">02</span><span class="stage-name">Logic App</span><span
-                class="stage-role">Orchestrates the run and retries</span></div>
+            <div class="stage-box"><span class="stage-n">02</span><span class="stage-name">Event Hub</span><span
+                class="stage-role">Event-driven orchestration</span></div>
             <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 8h22M21 3l5 5-5 5" />
             </svg>
           </li>
           <li class="stage is-accent">
-            <div class="stage-box"><span class="stage-n">03</span><span class="stage-name">Content Understanding +
-                GPT</span><span class="stage-role">Extracts the structured fields</span></div>
+            <div class="stage-box"><span class="stage-n">03</span><span class="stage-name">Content
+                Understanding</span><span class="stage-role">Extracts structured fields</span></div>
             <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 8h22M21 3l5 5-5 5" />
             </svg>
           </li>
           <li class="stage">
-            <div class="stage-box"><span class="stage-n">04</span><span class="stage-name">Azure Function</span><span
+            <div class="stage-box"><span class="stage-n">04</span><span class="stage-name">Azure Functions</span><span
                 class="stage-role">Converts output to SQL</span></div>
             <svg class="stage-arrow" aria-hidden="true" viewBox="0 0 32 16" fill="none" stroke="currentColor"
               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -100,14 +100,14 @@
             </svg>
           </li>
           <li class="stage">
-            <div class="stage-box"><span class="stage-n">05</span><span class="stage-name">Azure SQL Database</span><span
-                class="stage-role">System of record</span></div>
+            <div class="stage-box"><span class="stage-n">05</span><span class="stage-name">Azure SQL
+                Database</span><span class="stage-role">System of record</span></div>
           </li>
         </ol>
         <figcaption class="legend">
           <span><span class="dot" aria-hidden="true"></span>~90% straight through</span>
-          <span><span class="dot is-warn" aria-hidden="true"></span>~10% routed to a person: poor scans, wrong document
-            submitted</span>
+          <span><span class="dot is-warn" aria-hidden="true"></span>~10% routed as edge cases to a person: poor scans,
+            wrong document submitted, and so on.</span>
         </figcaption>
       </figure>
     </section>
@@ -123,8 +123,8 @@
       <div class="narrative-row">
         <h2>What I did</h2>
         <div class="body">
-          <p>Designed an event-driven pipeline: Event Hub takes each document in, a Logic App orchestrates, Azure
-            Content Understanding with a GPT model extracts the fields, and an Azure Function turns the output into SQL
+          <p>Designed an event-driven pipeline: A Logic App takes each document in, an Event Hub orchestrates, Azure
+            Content Understanding with a GPT model extracts the fields, and Azure Functions turn the output into SQL
             for Azure SQL Database.</p>
           <p>We started with small batches, checked the output by hand, and increased volume only as confidence in
             extraction quality grew. Anything the pipeline couldn't handle cleanly went to a person rather than into
@@ -159,7 +159,6 @@
   <footer class="site-footer">
     <div class="container">
       <span>© 2026 Adam Cain · Quadrivium Cloud</span>
-      <span>Client anonymised · details on request</span>
     </div>
   </footer>
 </body>
